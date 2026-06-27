@@ -13,7 +13,7 @@ software licensing fees.
 - Promotions with discounts
 - Favorite drinks per user
 - Ingredient tracking with allergen info
-- Token authentication
+- JWT
 - Custom permissions (Admin/ReadOnly)
 - Filtering, search and pagination
 - pytest test coverage
@@ -21,14 +21,14 @@ software licensing fees.
 ## Tech Stack
 
 - Python 3.14
-- Django 5.x
+- Django 6.0.6
 - Django REST Framework
 - SQLite
 - pytest
 
 ## Installation
 
-git clone https://github.com/ilybueface/first_orm_project
+git clone https://github.com/ilybueface/JWT_API_coffee
 cd first_orm_project
 pip install -r requirements.txt
 python manage.py migrate
