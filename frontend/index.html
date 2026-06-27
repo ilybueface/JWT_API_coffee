@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Coffee Shop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav>
+    <h1> Coffee SHOP </h1>
+    <a href="#"> Меню </a>
+</nav>
+
+<main>
+    <h2> Наше меню</h2>
+        <div class="drinks-grid" id="drinks-container">
+        </div>
+</main>
+
+
+<script>
+fetch('http://127.0.0.1:8000/coffee/drinks/?page_size=100')
+    .then(response => response.json())
+    .then(data => {
+        const container = document.getElementById('drinks-container');
+        data.results.forEach(drink => {
+            container.innerHTML += `
+                <div class="card">
+                    <h3>${drink.name}</h3>
+                    <p class="category">${drink.category.name}</p>
+                    <p class="price">${drink.price} ₽</p>
+                    <button> Заказать </button>
+                </div>
+            `;
+        });
+    });
+</script>
+
+
+</body>
+</html>

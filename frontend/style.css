@@ -1,0 +1,119 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+
+nav {
+    background-color: #3d2314;
+    color: white;
+    padding: 16px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.2s;
+    }
+
+
+    nav a:hover {
+        color: #f5c842;
+    }
+
+main {
+    padding: 32px;
+}
+
+main h2 {
+    margin-bottom: 24px;
+    color: #3d2314;
+}
+
+.drinks-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+
+.card h3 {
+    margin-bottom: 8px;
+}
+
+.category {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.price {
+    font-weight: bold;
+    color: #3d2314;
+    font-size: 18px;
+}
+
+.navbar {
+    background-color: #3d2314;
+    color: white;
+    padding: 16px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+
+.card button {
+    background-color: #f5f5f5;
+    color: black;
+    padding: 16px 32px;
+    font-size: 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, color 0.2s;
+}
+
+
+.card button:hover {
+    transform: scale(1.10);
+    color: darkorange;
+}
+
+@media (max-width: 768px) {
+    .navbar {padding: 12px 16px}
+    .navbar h1 {font-size: 20px}
+    .drinks-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 1024px) {
+    .drinks-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
