@@ -31,7 +31,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 
 class DrinkViewSet(viewsets.ModelViewSet):
-    queryset = Drink.objects.all()
+    queryset = Drink.objects.select_related('category').all()
     serializer_class = Drinkserializers
     filterset_class = DrinkFilter
     pagination_class = CustomMetaPagination
@@ -93,7 +93,7 @@ class OrderViewSet(viewsets.ModelViewSet):
 
 
 class ReviewViewSet(viewsets.ModelViewSet):
-    queryset = Review.objects.all()
+    queryset = Review.objects.select_related('drink', 'author').all()
     serializer_class = Reviewserializers
     permission_classes = [IsAuthenticatedOrReadOnly]
     filterset_fields = ['rating', 'drink__id']
