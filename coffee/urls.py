@@ -7,6 +7,7 @@ from .views import (
     ReviewViewSet,
     FavoriteViewSet,
     IngredientViewSet,
+    CoffeeBranchViewSet,
 )
 
 
@@ -17,6 +18,7 @@ router.register(r'order', OrderViewSet, basename='Order')
 router.register(r'promotion', PromotionViewSet, basename='Promotion')
 router.register(r'favorite', FavoriteViewSet, basename='favorite')
 router.register(r'ingredient', IngredientViewSet, basename='ingredient')
+router.register(r'branch', CoffeeBranchViewSet, basename='branch')
 drinks_router = routers.NestedDefaultRouter(router, r'drinks', lookup='drink')
 drinks_router.register(r'reviews', ReviewViewSet, basename='drink-reviews')
 

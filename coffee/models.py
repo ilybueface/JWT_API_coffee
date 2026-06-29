@@ -91,3 +91,17 @@ class Ingredient(models.Model):
 
     def __str__(self):
         return f"{self.name} | {self.is_allergen}"
+
+
+class CoffeeBranch(models.Model):
+    name = models.CharField(max_length=200)
+    address = models.CharField(max_length=300)
+    opening_time = models.TimeField()
+    closing_time = models.TimeField()
+    latitude = models.DecimalField(max_digits=8, decimal_places=2)
+    longitude = models.DecimalField(max_digits=8, decimal_places=2)
+    average_check = models.DecimalField(max_digits=8, decimal_places=2)
+    email = models.EmailField()
+
+    def __str__(self):
+        return f"{self.name} | {self.address} {self.email}"

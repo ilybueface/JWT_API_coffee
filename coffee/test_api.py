@@ -1,5 +1,5 @@
 import pytest
-from .models import Category, Ingredient, Drink
+from .models import Category, Ingredient, Drink, CoffeeBranch
 from rest_framework.test import APIClient
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -129,3 +129,55 @@ def test_ingredient_user_list():
     }, format='json')
 
     assert response.status_code == 403
+
+
+@pytest.mark.django_db
+def test_get_branch_list():
+    client = APIClient()
+    response = client.get('/coffee/branch/')
+    assert response.status_code == 200
+
+
+@pytest.mark.django_db
+def test_post_admin_branch_list():
+    user = User.objects.create_superuser(username='test123', password='tst213344')
+    refresh = RefreshToken.for_user(user)
+
+    client = APIClient()
+    client.credentials(HTTP_AUTHORIZATION='Bearer ' + str(refresh.access_token))
+
+    response = client.post('/coffee/branch/', {
+        'name': 'Cafe',
+        'address': 'test street',
+        'opening_time': '02:00:00',
+        'closing_time': '03:12:12',
+        'latitude': '4.1',
+        'longitude': '3.1',
+        'average_check': '123',
+        'email': 'test@gmail.com',
+    }, format='json')
+
+    assert response.status_code == 201
+
+
+@pytest.mark.django_db
+def test_simple_post_user_list():
+    user = User.objects.create_user(username='test', password='test1234')
+    refresh = RefreshToken.for_user(user)
+
+    client = APIClient()
+    client.credentials(HTTP_AUTHORIZATION='Bearer ' + str(refresh.access_token))
+
+    response = client.post('/coffee/branch/', {
+        'name': 'Cafe',
+        'address': 'test street',
+        'opening_time': '02:00:00',
+        'closing_time': '03:12:12',
+        'latitude': '4.1',
+        'longitude': '3.1',
+        'average_check': '123',
+        'email': 'test@gmail.com',
+    }, format='json')
+
+    assert response.status_code == 403
+    

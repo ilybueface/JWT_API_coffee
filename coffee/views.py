@@ -6,7 +6,7 @@ from .serializers import (
     Promotionserializers,
     Favoriteserializer,
     Ingredientsserializer,
-    OrderItemserializers,
+    CoffeeBranchserializers,
 )
 from rest_framework.filters import SearchFilter
 from rest_framework import viewsets
@@ -19,13 +19,14 @@ from .models import (
     Promotion,
     Favorite,
     Ingredient,
+    CoffeeBranch,
 )
 from .permissions import IsAdminOrReadOnly
 from .filters import DrinkFilter
 from .pagination import CustomMetaPagination
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 
@@ -145,3 +146,11 @@ class IngredientViewSet(viewsets.ModelViewSet):
         drinks = serializer.validated_data.pop('drinks_ids')
         ingredients = serializer.save()
         ingredients.drinks.set(drinks)
+
+
+class CoffeeBranchViewSet(viewsets.ModelViewSet):
+    queryset = CoffeeBranch.objects.all()
+    serializer_class = CoffeeBranchserializers
+    permission_classes = [IsAdminOrReadOnly]
+    search_fields = ['address']
+    filterset_fields = ['opening_time', 'closing_time']

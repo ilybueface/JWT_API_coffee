@@ -7,8 +7,8 @@ from .models import (
     Ingredient,
     Favorite,
     OrderItem,
-    DetailOfOrder,
     Review,
+    CoffeeBranch,
 )
 
 
@@ -129,3 +129,20 @@ class Ingredientsserializer(serializers.ModelSerializer):
                   'drinks',
                   'drinks_ids'
                   ]
+
+
+class CoffeeBranchserializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = CoffeeBranch
+        fields = [
+            'id',
+            'name',
+            'address',
+            'opening_time',
+            'closing_time',
+            'latitude',
+            'longitude',
+            'average_check',
+            'email',
+        ]

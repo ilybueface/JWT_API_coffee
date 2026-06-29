@@ -8,6 +8,7 @@ from .models import (
     OrderItem,
     Order,
     Review,
+    CoffeeBranch,
 )
 
 admin.site.register(Category)
@@ -18,3 +19,4 @@ admin.site.register(Favorite)
 admin.site.register(OrderItem)
 admin.site.register(Order)
 admin.site.register(Review)
+admin.site.register(CoffeeBranch)
