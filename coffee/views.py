@@ -9,7 +9,6 @@ from .serializers import (
     CoffeeBranchserializers,
 )
 from rest_framework.filters import SearchFilter
-from rest_framework import viewsets
 from .models import (
     Drink,
     Category,
@@ -25,6 +24,7 @@ from .permissions import IsAdminOrReadOnly
 from .filters import DrinkFilter
 from .pagination import CustomMetaPagination
 from rest_framework.decorators import action
+from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
@@ -87,7 +87,7 @@ class OrderViewSet(viewsets.ModelViewSet):
         for item in items_data:
             OrderItem.objects.create(
                 order=order,
-                drink_id=item['drink'],
+                drink=item['drink'],
                 quantity=item['quantity'],
             )
 
